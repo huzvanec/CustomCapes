@@ -1,12 +1,11 @@
 import os
 import platform
 from time import sleep
-from turtle import down
 import requests
 import zipfile
 import shutil
 
-class c: #define colors
+class c: # define colors and text styles
     Default      = "\033[39m"
     Black        = "\033[30m"
     Red          = "\033[31m"
@@ -30,92 +29,133 @@ class c: #define colors
     Underlined   = "\033[4m"
     END          = '\033[0m'
 
-sleepingTime = 1
+sleepingTime = 0.7 # user friendly wait (in seconds) 
 
 def linux():
+    # PATHS
     homePath = os.path.expanduser('~') + "/" # path to /home/<user>/
-    folderName = ".customcapes" # program root folder name
-    folderPath = homePath + folderName + "/"
+    folderName = ".customcapes" # program's root folder name
+    folderPath = homePath + folderName + "/" # path to root folder
     sleep(sleepingTime)
 
+    # ROOT FOLDER CHECK
     if os.path.exists(folderPath): # root folder exists
         print(c.Green + "Root folder: " + folderPath)
-    else:
+    else: # root folder doesn't exist
         print(c.Warning + "Root folder: not found")
         sleep(sleepingTime/2)
         os.mkdir(folderPath) # create root folder
         print(c.Warning + "Created directory: " + folderPath)
 
     sleep(sleepingTime)
-    # download capes.zip
+
+    # CAPES.ZIP DOWNLOAD
     print()
     print(c.Blue + "Downloading capes.zip...")
-    downloadURL = "https://skladu.jeme.cz/customcapes/capes.zip"
-    response = requests.get(downloadURL)
-    open(folderPath + "capes.zip", "wb").write(response.content)
+    downloadURL = "https://skladu.jeme.cz/customcapes/capes.zip" # define url to zip
+    response = requests.get(downloadURL) # download zip
+    open(folderPath + "capes.zip", "wb").write(response.content) # save zip
     sleep(sleepingTime)
     print(c.Blue + "Capes successfully downloaded!")
 
     sleep(sleepingTime)
+
+    # CAPES FOLDER CHECK
     print()
-    if os.path.exists(folderPath + "capes"):
-        print(c.Green + "Capes folder: exists")
-    else:
-        os.mkdir(folderPath + "capes")
+    if os.path.exists(folderPath + "capes"): #  capes folder exists
+        print(c.Green + "Capes folder: " + folderPath + "capes/")
+    else: # capes folder doesn't exist
         print(c.Warning + "Capes folder: not found")
         sleep(sleepingTime/2)
+        os.mkdir(folderPath + "capes") # create capes folder
         print(c.Warning + "Created directory: " + folderPath + "capes/")
 
     sleep(sleepingTime)
-    # extracting capes from capes.zip
+
+    # EXTRACT CAPES.ZIP TO CAPES FOLDER
     print()
     print(c.Cyan + "Extracting capes...")
-    with zipfile.ZipFile(folderPath + "capes.zip","r") as zip_ref:
+    with zipfile.ZipFile(folderPath + "capes.zip","r") as zip_ref: # extracting
         zip_ref.extractall(folderPath + "capes")
     sleep(sleepingTime)
     print(c.Cyan + "Capes successfully extracted!")
 
     sleep(sleepingTime)
-    # capes selection
-    print()
-    print()
+
+    # CAPES SELECTION
+    print("\n") # = 2 new lines
     selectedCape = "none"
     availibleCapes = ["custom", "better-light", "birthday", "bug-tracker", "cobalt", "dannybstyle", "migrator", "milionth-sale", "minecon-2011", "minecon-2012", "minecon-2013", "minecon-2015", "minecon-2016", "mojang", "mojang-new", "mojang-old", "prismarine", "ray-cokes", "realms", "scrolls", "translator", "translator-chinese", "translator-japan", "turtle"]
     while selectedCape not in availibleCapes:
         print(c.LightMagenta + "Select an option from the list: " + c.White)
         sleep(sleepingTime/4)
-        print(*availibleCapes, sep=", ")
+        print(*availibleCapes, sep=", ") # print availibleCapes list
         print()
         sleep(sleepingTime/4)
         selectedCape = input(c.LightMagenta + "Your selection: " + c.LightBlue)
-        if selectedCape not in availibleCapes:
+        if selectedCape not in availibleCapes: # input not in availibleCapes list
             print()
             print(c.Error + "\"" + selectedCape + "\" not in the list!")
             sleep(sleepingTime*2.5)
             print()
-        else:
+        else: # selection success
             sleep(sleepingTime)
             print()
-            if selectedCape == "custom":
+            if selectedCape == "custom": # when selected custom, ask for path to png file
                 customCapePath = input(c.LightMagenta + "Write absolute path to your custom minecraft .png cape: ")
                 sleep(sleepingTime)
             print(c.Green + "Selection success!")
 
     sleep(sleepingTime)
+
+    # MINECRAFT FOLDER PATH
     print()
     minecraftPath = input(c.LightMagenta + "Write absolute path to your .minecraft folder (leave empty for /home/<user>/.minecraft/): ")
     if minecraftPath == "":
-        minecraftPath = homePath + ".minecraft/"
-    skinsPath = minecraftPath + "assets/skins/23/"
+        minecraftPath = homePath + ".minecraft/" # when empty, set to default
+    
+    # CAPE APPLYMENT
+    # paths
+    print()
+    skinsPathOldMC = minecraftPath + "assets/skins/23/" # cape path for old minecraft versions (1.12 and older)
+    skinsPathNewMC = minecraftPath + "assets/skins/17/" # cape path for new minecraft versions (1.13 and newer)
+    # cape ID constants (I know, it looks awfull...)
+    capeIDOldMC = "2340c0e03dd24a11b15a8b33c2a7e9e32abb2051b2481d0ba7defd635ca7a933" # cape ID for old MC versions
+    capeIDNewMC = "17f76a23ff4d227a94ea3d5802dccae9f2ae9aa9" # cape ID for new MC versions
+    # check if folders exist, if not, create
+    if not os.path.exists(skinsPathOldMC): # old MC folder not found, create and add an cape ID file
+        print(c.Warning + "23 folder: not found!")
+        sleep(sleepingTime/2)
+        os.mkdir(skinsPathOldMC)
+        addfile = open(skinsPathOldMC + capeIDOldMC, "a").write("") # creates a temporary file to replace with a cape
+        print(c.Warning + "Created directory: 23")
+        print(c.Warning + "Created file: " + capeIDOldMC)
+    else: # old MC folder found
+        print(c.Green + "23 folder: exists")
+    if not os.path.exists(skinsPathNewMC): # new MC folder not found, create and add an cape ID file
+        print(c.Warning + "17 folder: not found!")
+        sleep(sleepingTime/2)
+        os.mkdir(skinsPathNewMC)
+        addfile = open(skinsPathNewMC + capeIDNewMC, "a").write("") # creates a temporary file to replace with a cape
+        print(c.Warning + "Created directory: 17")
+        print(c.Warning + "Created file: " + capeIDNewMC)
+    else: # new MC folder found
+        print(c.Green + "17 folder: exists")
+    sleep(sleepingTime)
     print()
     print(c.Cyan + "Applying cape...")
     capePath = folderPath + "capes/" + selectedCape + ".png"
-    if selectedCape == "custom":
+    if selectedCape == "custom": # if custom, apply the custom path
         capePath = customCapePath
-    shutil.copy(capePath, skinsPath)
-    capeID = "2340c0e03dd24a11b15a8b33c2a7e9e32abb2051b2481d0ba7defd635ca7a933"
-    os.remove(skinsPath + capeID)
-    os.rename(skinsPath + selectedCape + ".png", skinsPath + capeID)
+    # copying
+    shutil.copy(capePath, skinsPathOldMC) # copy selected cape to old MC folder
+    shutil.copy(capePath, skinsPathNewMC) # copy selected cape to new MC folder
+    # removing original MC capes
+    os.remove(skinsPathOldMC + capeIDOldMC) # remove old MC original cape
+    os.remove(skinsPathNewMC + capeIDNewMC) # remove new MC original cape
+    # renaming selected cape's names to IDs
+    os.rename(skinsPathOldMC + selectedCape + ".png", skinsPathOldMC + capeIDOldMC) # rename old MC selected cape
+    os.rename(skinsPathNewMC + selectedCape + ".png", skinsPathNewMC + capeIDNewMC) # rename new MC selected cape
     sleep(sleepingTime)
     print(c.Cyan + "Cape successfully applied!")
     sleep(sleepingTime)
@@ -123,23 +163,21 @@ def linux():
     print(c.Green + "Operation success!")
 
 
-
-
-
+# MAIN
 operatingSystem = platform.system() # OS detection
 
 supportedOSs = ["Linux", "Windows"]
 
-if (operatingSystem in supportedOSs): # OS supported7
+if (operatingSystem in supportedOSs): # OS supported
     print()
     print(c.Green + "Running on: " + operatingSystem)
     print()
 
     if operatingSystem == "Linux":
-        linux()
+        linux() # call linux
     elif operatingSystem == "Windows":
-        print(c.Error + "Comming Soon!")
+        print(c.Error + "Comming Soon!") # windows not supported, comming soon
 
 else: # OS not supported
-    print(c.Error + "Unsupported system: " + operatingSystem)
+    print(c.Error + "Unsupported OS system: " + operatingSystem)
     exit()
