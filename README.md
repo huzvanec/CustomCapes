@@ -13,6 +13,10 @@ Linux <br>
 1.17.1 <br>
 1.18.1 <br>
 1.18.2 <br>
+## Requirements
+You must have minecraft (I know, it's pretty obvious) <br>
+You must be a migrator <br>
+Your migrator cape has to be turned on - in your skin settings and in your minecraft options (Options/Skin Customization/Cape: ON)
 ## Capes
 [better-light](#better-light) <br>
 [birthday](#birthday) <br>
