@@ -1,8 +1,8 @@
 # CustomCapes
-## Suported OSs
+## Sppported OSs
 Linux <br>
 ~~Windows~~ (Comming soon!)
-## Suported minecraft versions
+## Supported minecraft versions
 1.7.* - 1.18.*
 ## Tested minecraft versions
 1.7.10 <br>
