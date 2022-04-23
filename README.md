@@ -58,8 +58,8 @@ Your migrator cape has to be turned on - in your skin settings and in your minec
 ![cape](https://skladu.jeme.cz/customcapes/capes_preview/dannybstyle.png)
 ![elytra](https://skladu.jeme.cz/customcapes/capes_preview/dannybstyle_elytra.png)
 ### migrator
-![cape](https://skladu.jeme.cz/customcapes/capes_preview/migrator.png)
-![elytra](https://skladu.jeme.cz/customcapes/capes_preview/migrator_elytra.png)
+![cape](https://skladu.jeme.cz/customcapes/capes_preview/migrator.png?)
+![elytra](https://skladu.jeme.cz/customcapes/capes_preview/migrator_elytra.png?)
 ### milionth-sale
 ![cape](https://skladu.jeme.cz/customcapes/capes_preview/milionth-sale.png)
 ![elytra](https://skladu.jeme.cz/customcapes/capes_preview/milionth-sale_elytra.png)
