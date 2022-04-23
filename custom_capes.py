@@ -29,7 +29,7 @@ class c: # define colors and text styles
     Underlined   = "\033[4m"
     END          = '\033[0m'
 
-sleepingTime = 0.7 # user friendly wait (in seconds) 
+sleepingTime = 0 # debug wait (in seconds) 
 
 def linux():
     # PATHS
@@ -96,7 +96,7 @@ def linux():
         if selectedCape not in availibleCapes: # input not in availibleCapes list
             print()
             print(c.Error + "\"" + selectedCape + "\" not in the list!")
-            sleep(sleepingTime*2.5)
+            sleep(2.5)
             print()
         else: # selection success
             sleep(sleepingTime)
