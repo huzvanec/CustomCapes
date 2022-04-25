@@ -4,7 +4,8 @@ Linux <br>
 ~~Windows~~ (Comming soon!)
 ## Supported minecraft versions
 1.7.* - 1.18.* <br>
-Works fine with every installation (forge, fabric, hack-clients, lunar client, badlion client...)
+Works fine with every installation (forge, fabric, hack-clients, lunar client, badlion client...) <br>
+⚠️ Some mods might edit/remove minecraft capes!
 ## Tested minecraft versions
 1.7.10 <br>
 1.8.9 <br>
