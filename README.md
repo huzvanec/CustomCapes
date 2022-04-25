@@ -3,8 +3,8 @@
 Linux <br>
 ~~Windows~~ (Comming soon!)
 ## Supported minecraft versions
-1.7.* - 1.18.*
-Works fine with every installation - forge, fabric, hack-clients, lunar client...
+1.7.* - 1.18.* <br>
+Works fine with every installation (forge, fabric, hack-clients, lunar client, badlion client...)
 ## Tested minecraft versions
 1.7.10 <br>
 1.8.9 <br>
