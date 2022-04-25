@@ -3,7 +3,9 @@
 Linux <br>
 ~~Windows~~ (Comming soon!)
 ## Supported minecraft versions
-1.7.* - 1.18.*
+1.7.* - 1.18.* <br>
+Works fine with every installation (forge, fabric, hack-clients, lunar client, badlion client...) <br>
+⚠️ Some mods might edit/remove minecraft capes!
 ## Tested minecraft versions
 1.7.10 <br>
 1.8.9 <br>
@@ -13,6 +15,12 @@ Linux <br>
 1.17.1 <br>
 1.18.1 <br>
 1.18.2 <br>
+Optifine (without OF cape) <br>
+Forge <br>
+Fabric <br>
+Lunar Client <br>
+Badlion Client <br>
+Impact Client <br>
 ## Requirements
 You must have minecraft (I know, it's pretty obvious) <br>
 You must be a migrator <br>
