@@ -32,60 +32,52 @@ class c:  # define colors and text styles
     END = '\033[0m'
 
 
-debugSleep = 0  # debug wait (in seconds)
 errorSleep = 2 # wait after error (in seconds)
 
-def linux():
+def paths():
     # PATHS
     homePath = os.path.expanduser('~') + "/"  # path to /home/<user>/
     folderName = ".customcapes"  # program's root folder name
-    folderPath = homePath + folderName + "/"  # path to root folder
-    sleep(debugSleep)
+    rootFolderPath = homePath + folderName + "/"  # path to root folder
+    return rootFolderPath, homePath
 
+def checkForRootFolder(rootFolderPath):
     # ROOT FOLDER CHECK
-    if os.path.exists(folderPath):  # root folder exists
-        print(c.Green + "Root folder: " + folderPath)
+    if os.path.exists(rootFolderPath):  # root folder exists
+        print(c.Green + "Root folder: " + rootFolderPath)
     else:  # root folder doesn't exist
         print(c.Warning + "Root folder: not found")
-        sleep(debugSleep/2)
-        os.mkdir(folderPath)  # create root folder
-        print(c.Warning + "Created directory: " + folderPath)
+        os.mkdir(rootFolderPath)  # create root folder
+        print(c.Warning + "Created directory: " + rootFolderPath)
 
-    sleep(debugSleep)
-
+def downloadCapes(rootFolderPath):
     # CAPES.ZIP DOWNLOAD
     print()
     print(c.Blue + "Downloading capes.zip...")
     downloadURL = "https://skladu.jeme.cz/customcapes/capes.zip"  # define url to zip
     response = requests.get(downloadURL)  # download zip
-    open(folderPath + "capes.zip", "wb").write(response.content)  # save zip
-    sleep(debugSleep)
+    open(rootFolderPath + "capes.zip", "wb").write(response.content)  # save zip
     print(c.Blue + "Capes successfully downloaded!")
 
-    sleep(debugSleep)
-
+def checkCapesFolder(rootFolderPath):
     # CAPES FOLDER CHECK
     print()
-    if os.path.exists(folderPath + "capes"):  # capes folder exists
-        print(c.Green + "Capes folder: " + folderPath + "capes/")
+    if os.path.exists(rootFolderPath + "capes"):  # capes folder exists
+        print(c.Green + "Capes folder: " + rootFolderPath + "capes/")
     else:  # capes folder doesn't exist
         print(c.Warning + "Capes folder: not found")
-        sleep(debugSleep/2)
-        os.mkdir(folderPath + "capes")  # create capes folder
-        print(c.Warning + "Created directory: " + folderPath + "capes/")
+        os.mkdir(rootFolderPath + "capes")  # create capes folder
+        print(c.Warning + "Created directory: " + rootFolderPath + "capes/")
 
-    sleep(debugSleep)
-
+def extractCapes(rootFolderPath):
     # EXTRACT CAPES.ZIP TO CAPES FOLDER
     print()
     print(c.Cyan + "Extracting capes...")
-    with zipfile.ZipFile(folderPath + "capes.zip", "r") as zip_ref:  # extracting
-        zip_ref.extractall(folderPath + "capes")
-    sleep(debugSleep)
+    with zipfile.ZipFile(rootFolderPath + "capes.zip", "r") as zip_ref:  # extracting
+        zip_ref.extractall(rootFolderPath + "capes")
     print(c.Cyan + "Capes successfully extracted!")
 
-    sleep(debugSleep)
-
+def capesSelection():
     # CAPES SELECTION
     print("\n")  # = 2 new lines
     selectedCape = "none"
@@ -93,10 +85,8 @@ def linux():
                       "minecon-2015", "minecon-2016", "mojang", "mojang-new", "mojang-old", "prismarine", "ray-cokes", "realms", "scrolls", "translator", "translator-chinese", "translator-japan", "turtle"]
     while selectedCape not in availibleCapes:
         print(c.LightMagenta + "Select an option from the list: " + c.White)
-        sleep(debugSleep/4)
         print(*availibleCapes, sep=", ")  # print availibleCapes list
         print()
-        sleep(debugSleep/4)
         selectedCape = input(c.LightMagenta + "Your selection: " + c.LightBlue)
         if selectedCape not in availibleCapes:  # input not in availibleCapes list
             print()
@@ -104,7 +94,6 @@ def linux():
             sleep(errorSleep)
             print()
         else:  # selection success
-            sleep(debugSleep)
             if selectedCape == "custom":  # when selected custom, ask for path to png file
                 customCapeFileName = "none"
                 customCapeFileHeight = 0
@@ -126,21 +115,24 @@ def linux():
                             valid = True # everithing looks alright
                     if valid == False: # if an error appeared, wait
                         sleep(errorSleep)
-                sleep(debugSleep)
             print()
             print(c.Green + "Selection success!")
+    if selectedCape == "custom":        
+        return selectedCape, customCapeFileName, customCapeFilePath
+    else:
+        return selectedCape, "none", "none"
 
-    sleep(debugSleep)
-
+def askForMinecraftPath(homePath):
     # MINECRAFT FOLDER PATH
     print()
     minecraftPath = input(
         c.LightMagenta + "Write absolute path to your .minecraft folder (leave empty for /home/<user>/.minecraft/): " + c.LightBlue)
     if minecraftPath == "":
         minecraftPath = homePath + ".minecraft/"  # when empty, set to default
+    return minecraftPath
 
+def applyCape(minecraftPath, rootFolderPath, selectedCape, customCapeFilePath, customCapeFileName):
     # CAPE APPLYMENT
-    # paths
     print()
     # cape path for old minecraft versions (1.12 and older)
     skinsPathOldMC = minecraftPath + "assets/skins/23/"
@@ -152,7 +144,6 @@ def linux():
     # check if folders exist, if not, create
     if not os.path.exists(skinsPathOldMC):     # old MC folder not found, create and add an cape ID file
         print(c.Warning + "23 folder: not found!")
-        sleep(debugSleep/2)
         os.mkdir(skinsPathOldMC)
         # creates a temporary file to replace with a cape
         addfile = open(skinsPathOldMC + capeIDOldMC, "a").write("")
@@ -168,7 +159,6 @@ def linux():
     # new MC folder not found, create and add an cape ID file
     if not os.path.exists(skinsPathNewMC):
         print(c.Warning + "17 folder: not found!")
-        sleep(debugSleep/2)
         os.mkdir(skinsPathNewMC)
         # creates a temporary file to replace with a cape
         addfile = open(skinsPathNewMC + capeIDNewMC, "a").write("")
@@ -181,10 +171,9 @@ def linux():
             # creates a temporary file to replace with a cape
             addfile = open(skinsPathNewMC + capeIDNewMC, "a").write("")
             print(c.Warning + "Created file: " + capeIDNewMC)
-    sleep(debugSleep)
     print()
     print(c.Cyan + "Applying cape...")
-    capePath = folderPath + "capes/" + selectedCape + ".png"
+    capePath = rootFolderPath + "capes/" + selectedCape + ".png"
     if selectedCape == "custom":  # if custom, apply the custom path
         capePath = customCapeFilePath
     # copying
@@ -206,27 +195,27 @@ def linux():
                 skinsPathOldMC + capeIDOldMC)  # rename old MC selected cape
         os.rename(skinsPathNewMC + selectedCape + ".png",
                 skinsPathNewMC + capeIDNewMC)  # rename new MC selected cape
-    sleep(debugSleep)
     print(c.Cyan + "Cape successfully applied!")
-    sleep(debugSleep)
     print()
-    print(c.Green + "Operation success!")
 
 
 # MAIN
 operatingSystem = platform.system()  # OS detection
 
-supportedOSs = ["Linux", "Windows"]
-
-if (operatingSystem in supportedOSs):  # OS supported
+if operatingSystem == "Linux":  # OS supported
     print()
     print(c.Green + "Running on: " + operatingSystem)
     print()
 
-    if operatingSystem == "Linux":
-        linux()  # call linux
-    elif operatingSystem == "Windows":
-        print(c.Error + "Comming Soon!")  # windows not supported, comming soon
+    rootFolderPath, homeFolderPath = paths() # get root folder and home folder paths
+    checkForRootFolder(rootFolderPath) # check if rootfolder exists, else create
+    downloadCapes(rootFolderPath) # download capes.zip to root folder
+    checkCapesFolder(rootFolderPath) # check if capes folder exists, else create
+    extractCapes(rootFolderPath) # extract capes to capes folder
+    selectedCape, customCapeFileName, customCapeFilePath = capesSelection() # run the capes selection + custom image checks
+    minecraftPath = askForMinecraftPath(homeFolderPath)
+    applyCape(minecraftPath, rootFolderPath, selectedCape, customCapeFilePath, customCapeFileName) # cape applyment
+    print(c.Green + "Operation success!")
 
 else:  # OS not supported
     print(c.Error + "Unsupported OS system: " + operatingSystem)
