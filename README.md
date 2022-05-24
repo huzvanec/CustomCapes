@@ -1,5 +1,5 @@
 # CustomCapes
-$# What is it?
+## What is it?
 It is a simple program, that allows you to client-side retexture your migrator cape. In default, the program downloads all 22 official minecraft capes for your easy usage, but you can also create your own and apply it just the same! 
 ## Sppported OSs
 Linux <br>
