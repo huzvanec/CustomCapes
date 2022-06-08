@@ -20,7 +20,7 @@ class c:  # define colors and text styles
     Cyan = "\033[36m"
     LightGray = "\033[37m"
     DarkGray = "\033[90m"
-    LightError = "\033[91m"
+    LightRed = "\033[91m"
     LightGreen = "\033[92m"
     LightYellow = "\033[93m"
     LightBlue = "\033[94m"
@@ -31,6 +31,12 @@ class c:  # define colors and text styles
     Underlined = "\033[4m"
     END = '\033[0m'
 
+def error(text, sleep):
+    print(c.Error + text)
+    sleep(sleep)
+
+def warning(text):
+    print(c.Warning + text)
 
 errorSleep = 2 # wait after error (in seconds)
 
@@ -46,9 +52,9 @@ def checkForRootFolder(rootFolderPath):
     if os.path.exists(rootFolderPath):  # root folder exists
         print(c.Green + "Root folder: " + rootFolderPath)
     else:  # root folder doesn't exist
-        print(c.Warning + "Root folder: not found")
+        warning("Root folder: not found")
         os.mkdir(rootFolderPath)  # create root folder
-        print(c.Warning + "Created directory: " + rootFolderPath)
+        warning("Created directory: " + rootFolderPath)
 
 def downloadCapes(rootFolderPath):
     # CAPES.ZIP DOWNLOAD
@@ -65,9 +71,9 @@ def checkCapesFolder(rootFolderPath):
     if os.path.exists(rootFolderPath + "capes"):  # capes folder exists
         print(c.Green + "Capes folder: " + rootFolderPath + "capes/")
     else:  # capes folder doesn't exist
-        print(c.Warning + "Capes folder: not found")
+        warning("Capes folder: not found")
         os.mkdir(rootFolderPath + "capes")  # create capes folder
-        print(c.Warning + "Created directory: " + rootFolderPath + "capes/")
+        warning("Created directory: " + rootFolderPath + "capes/")
 
 def extractCapes(rootFolderPath):
     # EXTRACT CAPES.ZIP TO CAPES FOLDER
@@ -90,8 +96,7 @@ def capesSelection():
         selectedCape = input(c.LightMagenta + "Your selection: " + c.LightBlue)
         if selectedCape not in availibleCapes:  # input not in availibleCapes list
             print()
-            print(c.Error + "\"" + selectedCape + "\" not in the list!")
-            sleep(errorSleep)
+            error("\"" + selectedCape + "\" not in the list!", errorSleep)
             print()
         else:  # selection success
             if selectedCape == "custom":  # when selected custom, ask for path to png file
@@ -102,15 +107,15 @@ def capesSelection():
                 while valid == False: # repeat until valid
                     customCapeFilePath = input(c.LightMagenta + "Write absolute path to your custom minecraft .png cape: " + c.LightBlue)
                     if not customCapeFilePath.endswith(".png"): # check if it's png
-                        print(c.Error + "This is not a png file!")
+                        error("This is not a png file!", 0)
                     elif not os.path.exists(customCapeFilePath): # check if it exists
-                        print(c.Error + "This file doesn't exist!")
+                        error("This file doesn't exist!", 0)
                     else: # file exists and it's png
                         customCapeFileName = os.path.basename(customCapeFilePath)
                         customCapeFileImage = PIL.Image.open(customCapeFilePath)
                         customCapeFileWidth, customCapeFileHeight = customCapeFileImage.size
                         if not customCapeFileHeight/customCapeFileWidth == 0.5: # check aspect ratio
-                            print(c.Error + "Bad aspect ratio! Please use 2:1!")
+                            error("Bad aspect ratio! Please use 2:1!", 0)
                         else:
                             valid = True # everithing looks alright
                     if valid == False: # if an error appeared, wait
@@ -143,44 +148,46 @@ def applyCape(minecraftPath, rootFolderPath, selectedCape, customCapeFilePath, c
     capeIDNewMC = "17f76a23ff4d227a94ea3d5802dccae9f2ae9aa9" # cape ID for new MC versions
     # check if folders exist, if not, create2
     if not os.path.exists(minecraftPath + "assets/"):     # assets folder not found, create
-        print(c.Warning + "Assets folder: not found!")
+        warning("Assets folder: not found!")
         os.mkdir(minecraftPath + "assets/")
-        # creates a temporary file to replace with a cape
-        print(c.Warning + "Created directory: assets")
+        warning("Created directory: assets")
+    else:
+        print(c.Green + "Assets folder: exists")
     if not os.path.exists(minecraftPath + "assets/skins/"):     # skins folder not found, create
-        print(c.Warning + "Skins folder: not found!")
+        warning("Skins folder: not found!")
         os.mkdir(minecraftPath + "assets/skins/")
-        # creates a temporary file to replace with a cape
-        print(c.Warning + "Created directory: assets")
+        warning("Created directory: skins")
+    else:
+        print(c.Green + "Skins folder: exists")
     if not os.path.exists(skinsPathOldMC):     # old MC folder not found, create and add an cape ID file
-        print(c.Warning + "23 folder: not found!")
+        warning("23 folder: not found!")
         os.mkdir(skinsPathOldMC)
         # creates a temporary file to replace with a cape
         addfile = open(skinsPathOldMC + capeIDOldMC, "a").write("")
-        print(c.Warning + "Created directory: 23")
-        print(c.Warning + "Created file: " + capeIDOldMC)
+        warning("Created directory: 23")
+        warning("Created file: " + capeIDOldMC)
     else:  # old MC folder found
         print(c.Green + "23 folder: exists")
         # folder 23 exists, but the file doesnt
         if not os.path.exists(skinsPathOldMC + capeIDOldMC):
             # creates a temporary file to replace with a cape
             addfile = open(skinsPathOldMC + capeIDOldMC, "a").write("")
-            print(c.Warning + "Created file: " + capeIDOldMC)
+            warning("Created file: " + capeIDOldMC)
     # new MC folder not found, create and add an cape ID file
     if not os.path.exists(skinsPathNewMC):
-        print(c.Warning + "17 folder: not found!")
+        warning("17 folder: not found!")
         os.mkdir(skinsPathNewMC)
         # creates a temporary file to replace with a cape
         addfile = open(skinsPathNewMC + capeIDNewMC, "a").write("")
-        print(c.Warning + "Created directory: 17")
-        print(c.Warning + "Created file: " + capeIDNewMC)
+        warning("Created directory: 17")
+        warning("Created file: " + capeIDNewMC)
     else:  # new MC folder found
         print(c.Green + "17 folder: exists")
         # folder 17 exists, but the file doesnt
         if not os.path.exists(skinsPathNewMC + capeIDNewMC):
             # creates a temporary file to replace with a cape
             addfile = open(skinsPathNewMC + capeIDNewMC, "a").write("")
-            print(c.Warning + "Created file: " + capeIDNewMC)
+            warning("Created file: " + capeIDNewMC)
     print()
     print(c.Cyan + "Applying cape...")
     capePath = rootFolderPath + "capes/" + selectedCape + ".png"
@@ -228,5 +235,5 @@ if operatingSystem == "Linux":  # OS supported
     print(c.Green + "Operation success!")
 
 else:  # OS not supported
-    print(c.Error + "Unsupported OS system: " + operatingSystem)
+    error("Unsupported OS system: " + operatingSystem, 0)
     exit()
