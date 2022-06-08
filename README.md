@@ -29,7 +29,7 @@ You must be a migrator <br>
 Your migrator cape has to be turned on - in your skin settings and in your minecraft options (Options/Skin Customization/Cape: ON)
 ## MultiMc support
 MultiMc 5 is supported, you just need to insert this instead of your .minecraft path: <br>
-Linux: /home/&lt;user&gt;/.local/share/multimc/
+Linux: /home/&lt;user&gt;/.local/share/multimc/ <br>
 ~~Windows~~ (Comming soon!)
 ## Capes
 [better-light](#better-light) <br>
