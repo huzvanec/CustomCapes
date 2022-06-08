@@ -141,7 +141,17 @@ def applyCape(minecraftPath, rootFolderPath, selectedCape, customCapeFilePath, c
     # cape ID constants (I know, it looks awfull...)
     capeIDOldMC = "2340c0e03dd24a11b15a8b33c2a7e9e32abb2051b2481d0ba7defd635ca7a933" # cape ID for old MC versions
     capeIDNewMC = "17f76a23ff4d227a94ea3d5802dccae9f2ae9aa9" # cape ID for new MC versions
-    # check if folders exist, if not, create
+    # check if folders exist, if not, create2
+    if not os.path.exists(minecraftPath + "assets/"):     # assets folder not found, create
+        print(c.Warning + "Assets folder: not found!")
+        os.mkdir(minecraftPath + "assets/")
+        # creates a temporary file to replace with a cape
+        print(c.Warning + "Created directory: assets")
+    if not os.path.exists(minecraftPath + "assets/skins/"):     # skins folder not found, create
+        print(c.Warning + "Skins folder: not found!")
+        os.mkdir(minecraftPath + "assets/skins/")
+        # creates a temporary file to replace with a cape
+        print(c.Warning + "Created directory: assets")
     if not os.path.exists(skinsPathOldMC):     # old MC folder not found, create and add an cape ID file
         print(c.Warning + "23 folder: not found!")
         os.mkdir(skinsPathOldMC)
