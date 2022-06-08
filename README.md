@@ -1,7 +1,21 @@
 # CustomCapes
+## Table of contents
+[What is it?](#what-is-it)
+
+[Supported OSs](#supported-oss)
+
+[Supported minecraft versions](#supported-minecraft-versions)
+
+[Tested minecraft versions](#tested-minecraft-versions)
+
+[Requirements](#requirements)
+
+[MultiMC support](#multimc-support)
+
+[Capes list](#capes)
 ## What is it?
 It is a simple program, that allows you to client-side retexture your migrator cape. In default, the program downloads all 22 official minecraft capes for your easy usage, but you can also create your own and apply it just the same! 
-## Sppported OSs
+## Supported OSs
 Linux <br>
 ~~Windows~~ (Comming soon!)
 ## Supported minecraft versions
@@ -27,8 +41,8 @@ Impact Client <br>
 You must have minecraft (I know, it's pretty obvious) <br>
 You must be a migrator <br>
 Your migrator cape has to be turned on - in your skin settings and in your minecraft options (Options/Skin Customization/Cape: ON)
-## MultiMc support
-MultiMc 5 is supported, you just need to insert this instead of your .minecraft path: <br>
+## MultiMC support
+MultiMC 5 is supported, you just need to insert this instead of your .minecraft path: <br>
 Linux: /home/&lt;user&gt;/.local/share/multimc/ <br>
 ~~Windows~~ (Comming soon!)
 ## Capes
