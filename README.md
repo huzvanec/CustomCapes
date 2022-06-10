@@ -2,6 +2,8 @@
 ## Table of contents
 [What is it?](#what-is-it)
 
+[Installation](#installation)
+
 [Supported OSs](#supported-oss)
 
 [Supported minecraft versions](#supported-minecraft-versions)
@@ -14,12 +16,26 @@
 
 [Capes list](#capes)
 ## What is it?
-It is a simple program, that allows you to client-side retexture your migrator cape. In default, the program downloads all 22 official minecraft capes for your easy usage, but you can also create your own and apply it just the same! 
+It is a simple program, that allows you to client-side retexture your migrator cape. In default, the program downloads all 22 official minecraft capes for your easy usage, but you can also create your own and apply it just the same!
+## Installation
+First, you need to make sure, you have python3 installed. If you don't, download it from https://www.python.org/downloads/.
+
+This program also needs two additional modules, that are not preinstaled. You can easilly install them using theese two commands in terminal.
+````
+python3 -m pip install pillow
+````
+````
+python3 -m pip install requests
+````
+Then navigate to the directory you downloaded the custom-capes.py and run
+````
+python3 custom-capes.py
+````
 ## Supported OSs
 Linux <br>
-~~Windows~~ (Comming soon!)
+Windows <br>
 ## Supported minecraft versions
-1.7.* - 1.18.* <br>
+1.7.* - 1.19.* <br>
 Works fine with every installation (forge, fabric, hack-clients, lunar client, badlion client...) <br>
 ⚠️ Some mods might edit/remove minecraft capes!
 ## Tested minecraft versions
@@ -31,6 +47,7 @@ Works fine with every installation (forge, fabric, hack-clients, lunar client, b
 1.17.1 <br>
 1.18.1 <br>
 1.18.2 <br>
+1.19 <br>
 Optifine (without OF cape) <br>
 Forge <br>
 Fabric <br>
@@ -44,8 +61,9 @@ Your migrator cape has to be turned on - in your skin settings and in your minec
 ## MultiMC support
 MultiMC 5 is supported, you just need to insert this instead of your .minecraft path: <br>
 Linux: /home/&lt;user&gt;/.local/share/multimc/ <br>
-~~Windows~~ (Comming soon!)
+Windows: I have no idea, where is multimc stored 🤷‍♂️
 ## Capes
+[custom](#custom)
 [better-light](#better-light) <br>
 [birthday](#birthday) <br>
 [bug-tracker](#bug-tracker) <br>
@@ -69,7 +87,10 @@ Linux: /home/&lt;user&gt;/.local/share/multimc/ <br>
 [translator](#translator) <br>
 [translator-chinese](#translator-chinese) <br>
 [translator-japan](#translator-japan) <br>
-
+### custom
+#### Any cape you want!
+![cape](https://skladu.jeme.cz/customcapes/capes_preview/custom.png)
+![elytra](https://skladu.jeme.cz/customcapes/capes_preview/custom_elytra.png)
 ### better-light
 ![cape](https://skladu.jeme.cz/customcapes/capes_preview/better-light.png)
 ![elytra](https://skladu.jeme.cz/customcapes/capes_preview/better-light_elytra.png)
