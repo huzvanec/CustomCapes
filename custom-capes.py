@@ -142,17 +142,27 @@ def capesSelection():
 
 def askForMinecraftPath(homePath, OS):
     # MINECRAFT FOLDER PATH
-    print()
-    if OS == "Linux":
-        minecraftPath = input(
-        c.LightMagenta + "Write absolute path to your .minecraft folder (leave empty for /home/<user>/.minecraft/): " + c.LightBlue)
-        if minecraftPath == "":
-            minecraftPath = homePath + ".minecraft/"  # when empty, set to default
-    elif OS == "Windows":
-        minecraftPath = input(
-        c.LightMagenta + "Write absolute path to your .minecraft folder (leave empty for C:\\Users\\<user>\\AppData\\Roaming\\.minecraft\\): " + c.LightBlue)
-        if minecraftPath == "":
-            minecraftPath = homePath + "AppData\\Roaming\\.minecraft\\"  # when empty, set to default
+    valid = False
+    while not valid:
+        print()
+        if OS == "Linux":
+            minecraftPath = input(
+            c.LightMagenta + "Write absolute path to your .minecraft folder (leave empty for /home/<user>/.minecraft/): " + c.LightBlue)
+            if minecraftPath == "":
+                minecraftPath = homePath + ".minecraft/"  # when empty, set to default
+        elif OS == "Windows":
+            minecraftPath = input(
+            c.LightMagenta + "Write absolute path to your .minecraft folder (leave empty for C:\\Users\\<user>\\AppData\\Roaming\\.minecraft\\): " + c.LightBlue)
+            if minecraftPath == "":
+                minecraftPath = homePath + "AppData\\Roaming\\.minecraft\\"  # when empty, set to default
+        if not os.path.exists(minecraftPath):
+            print()
+            error("This path doesn't exist!", errorSleep)
+        elif not os.path.isdir(minecraftPath):
+            print()
+            error("This path isn't a directory!", errorSleep)
+        else:
+            valid = True
     return minecraftPath
 
 def applyCape(minecraftPath, rootFolderPath, selectedCape, customCapeFilePath, customCapeFileName, OS):
@@ -277,7 +287,7 @@ if operatingSystem == "Linux" or operatingSystem == "Windows":  # OS supported
     selectedCape, customCapeFileName, customCapeFilePath = capesSelection() # run the capes selection + custom image checks
     minecraftPath = askForMinecraftPath(homeFolderPath, operatingSystem)
     applyCape(minecraftPath, rootFolderPath, selectedCape, customCapeFilePath, customCapeFileName, operatingSystem) # cape applyment
-    print(c.Green + "Operation success!")
+    print(c.Green + "Operation success!" + c.Default)
 
 else:  # OS not supported
     error("Unsupported OS system: " + operatingSystem, 0)
