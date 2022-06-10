@@ -42,9 +42,9 @@ errorSleep = 2 # wait after error (in seconds)
 
 def paths():
     # PATHS
-    homePath = os.path.expanduser('~') + "/"  # path to /home/<user>/
+    homePath = os.path.expanduser('~') + "\\"  # path to C:\Users\<user>
     folderName = ".customcapes"  # program's root folder name
-    rootFolderPath = homePath + folderName + "/"  # path to root folder
+    rootFolderPath = homePath + folderName + "\\"  # path to root folder
     return rootFolderPath, homePath
 
 def checkForRootFolder(rootFolderPath):
@@ -69,11 +69,11 @@ def checkCapesFolder(rootFolderPath):
     # CAPES FOLDER CHECK
     print()
     if os.path.exists(rootFolderPath + "capes"):  # capes folder exists
-        print(c.Green + "Capes folder: " + rootFolderPath + "capes/")
+        print(c.Green + "Capes folder: " + rootFolderPath + "capes\\")
     else:  # capes folder doesn't exist
         warning("Capes folder: not found")
         os.mkdir(rootFolderPath + "capes")  # create capes folder
-        warning("Created directory: " + rootFolderPath + "capes/")
+        warning("Created directory: " + rootFolderPath + "capes\\")
 
 def extractCapes(rootFolderPath):
     # EXTRACT CAPES.ZIP TO CAPES FOLDER
@@ -131,31 +131,31 @@ def askForMinecraftPath(homePath):
     # MINECRAFT FOLDER PATH
     print()
     minecraftPath = input(
-        c.LightMagenta + "Write absolute path to your .minecraft folder (leave empty for /home/<user>/.minecraft/): " + c.LightBlue)
+        c.LightMagenta + "Write absolute path to your .minecraft folder (leave empty for C:\\Users\\<user>\\AppData\\Roaming\\.minecraft\\): " + c.LightBlue)
     if minecraftPath == "":
-        minecraftPath = homePath + ".minecraft/"  # when empty, set to default
+        minecraftPath = homePath + "AppData\\Roaming\\.minecraft\\"  # when empty, set to default
     return minecraftPath
 
 def applyCape(minecraftPath, rootFolderPath, selectedCape, customCapeFilePath, customCapeFileName):
     # CAPE APPLYMENT
     print()
-    # cape path for old minecraft versions (1.12 and older)
-    skinsPathOldMC = minecraftPath + "assets/skins/23/"
-    # cape path for new minecraft versions (1.13 and newer)
-    skinsPathNewMC = minecraftPath + "assets/skins/17/"
     # cape ID constants (I know, it looks awfull...)
     capeIDOldMC = "2340c0e03dd24a11b15a8b33c2a7e9e32abb2051b2481d0ba7defd635ca7a933" # cape ID for old MC versions
     capeIDNewMC = "17f76a23ff4d227a94ea3d5802dccae9f2ae9aa9" # cape ID for new MC versions
-    # check if folders exist, if not, create2
-    if not os.path.exists(minecraftPath + "assets/"):     # assets folder not found, create
+    # cape path for old minecraft versions (1.12 and older)
+    skinsPathOldMC = minecraftPath + "assets\\skins\\23\\"
+    # cape path for new minecraft versions (1.13 and newer)
+    skinsPathNewMC = minecraftPath + "assets\\skins\\17\\"
+    # check if folders exist, if not, create
+    if not os.path.exists(minecraftPath + "assets\\"):     # assets folder not found, create
         warning("Assets folder: not found!")
-        os.mkdir(minecraftPath + "assets/")
+        os.mkdir(minecraftPath + "assets\\")
         warning("Created directory: assets")
     else:
         print(c.Green + "Assets folder: exists")
-    if not os.path.exists(minecraftPath + "assets/skins/"):     # skins folder not found, create
+    if not os.path.exists(minecraftPath + "assets\\skins\\"):     # skins folder not found, create
         warning("Skins folder: not found!")
-        os.mkdir(minecraftPath + "assets/skins/")
+        os.mkdir(minecraftPath + "assets\\skins\\")
         warning("Created directory: skins")
     else:
         print(c.Green + "Skins folder: exists")
@@ -190,7 +190,7 @@ def applyCape(minecraftPath, rootFolderPath, selectedCape, customCapeFilePath, c
             warning("Created file: " + capeIDNewMC)
     print()
     print(c.Cyan + "Applying cape...")
-    capePath = rootFolderPath + "capes/" + selectedCape + ".png"
+    capePath = rootFolderPath + "capes\\" + selectedCape + ".png"
     if selectedCape == "custom":  # if custom, apply the custom path
         capePath = customCapeFilePath
     # copying
@@ -218,8 +218,7 @@ def applyCape(minecraftPath, rootFolderPath, selectedCape, customCapeFilePath, c
 
 # MAIN
 operatingSystem = platform.system()  # OS detection
-
-if operatingSystem == "Linux":  # OS supported
+if operatingSystem == "Windows":  # OS supported
     print()
     print(c.Green + "Running on: " + operatingSystem)
     print()
