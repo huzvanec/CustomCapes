@@ -43,6 +43,7 @@ errorSleep = 2 # wait after error (in seconds)
 def ctrlc_handler(sig, frame): # ctrl + c detection
     print()
     error("KeyboardInterrupt!", 0)
+    print(c.LightBlue + "Goodbye :)" + c.Default)
     exit()
 
 signal.signal(signal.SIGINT, ctrlc_handler)
