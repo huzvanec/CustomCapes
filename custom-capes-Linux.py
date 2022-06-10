@@ -31,9 +31,9 @@ class c:  # define colors and text styles
     Underlined = "\033[4m"
     END = '\033[0m'
 
-def error(text, sleep):
+def error(text, sleepTime):
     print(c.Error + text)
-    sleep(sleep)
+    sleep(sleepTime)
 
 def warning(text):
     print(c.Warning + text)
