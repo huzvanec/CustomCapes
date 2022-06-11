@@ -18,7 +18,7 @@
 ## What is it?
 It is a simple program, that allows you to client-side retexture your migrator cape. In default, the program downloads all 22 official minecraft capes for your easy usage, but you can also create your own and apply it just the same!
 ## Installation
-First, you need to make sure, you have python3 installed. If you don't, download it from https://www.python.org/downloads/.
+First, you need to make sure, you have python3 installed (try ````python3 --version````). If you don't, download it from https://www.python.org/downloads/.
 
 This program also needs two additional modules, that are not preinstaled. You can easilly install them using theese two commands in terminal.
 ````
