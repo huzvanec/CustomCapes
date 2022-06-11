@@ -108,7 +108,7 @@ def capesSelection():
     # CAPES SELECTION
     print("\n")  # = 2 new lines
     selectedCape = "none"
-    availibleCapes = ["CUSTOM", "better-light", "birthday", "bug-tracker", "cobalt", "dannybstyle", "migrator", "milionth-sale", "minecon-2011", "minecon-2012", "minecon-2013",
+    availibleCapes = ["custom", "better-light", "birthday", "bug-tracker", "cobalt", "dannybstyle", "migrator", "milionth-sale", "minecon-2011", "minecon-2012", "minecon-2013",
                       "minecon-2015", "minecon-2016", "mojang", "mojang-new", "mojang-old", "prismarine", "ray-cokes", "realms", "scrolls", "translator", "translator-chinese", "translator-japan", "turtle"]
     while selectedCape not in availibleCapes:
         print(c.LightMagenta + "Select an option from the list: " + c.White)
