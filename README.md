@@ -63,7 +63,7 @@ MultiMC 5 is supported, you just need to insert this instead of your .minecraft 
 Linux: /home/&lt;user&gt;/.local/share/multimc/ <br>
 Windows: I have no idea, where is multimc stored 🤷‍♂️
 ## Capes
-[custom](#custom)
+[custom](#custom) <br>
 [better-light](#better-light) <br>
 [birthday](#birthday) <br>
 [bug-tracker](#bug-tracker) <br>
