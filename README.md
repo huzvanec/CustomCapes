@@ -39,7 +39,7 @@ Windows <br>
 Works fine with every installation (forge, fabric, hack-clients, lunar client, badlion client...) <br>
 ⚠️ Some mods might edit/remove minecraft capes!
 ## Tested minecraft versions
-1.7.10 - 1.19.3 <br>
+1.7.10 - 1.19.3 Vanilla<br>
 Optifine (without OF cape) <br>
 Forge <br>
 Fabric <br>
