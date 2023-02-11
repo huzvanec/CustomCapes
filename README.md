@@ -35,19 +35,11 @@ python3 custom-capes.py
 Linux <br>
 Windows <br>
 ## Supported minecraft versions
-1.7.* - 1.19.* <br>
+1.7+ (older versions not tested)<br>
 Works fine with every installation (forge, fabric, hack-clients, lunar client, badlion client...) <br>
 ⚠️ Some mods might edit/remove minecraft capes!
 ## Tested minecraft versions
-1.7.10 <br>
-1.8.9 <br>
-1.12.2 <br>
-1.13.2 <br>
-1.16.5 <br>
-1.17.1 <br>
-1.18.1 <br>
-1.18.2 <br>
-1.19 <br>
+1.7.10 - 1.19.3 <br>
 Optifine (without OF cape) <br>
 Forge <br>
 Fabric <br>
