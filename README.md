@@ -1,4 +1,6 @@
 # CustomCapes
+# NOT MAINTAINED!
+## This repository is not maintained!
 ## Table of contents
 [What is it?](#what-is-it)
 
