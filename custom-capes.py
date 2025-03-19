@@ -73,7 +73,7 @@ def downloadCapes(rootFolderPath):
     # CAPES.ZIP DOWNLOAD
     print()
     print(c.Blue + "Downloading capes.zip...")
-    downloadURL = "https://github.com/huzvanec/CustomCapes/releases/download/v2.0/capes.zip"  # define url to zip
+    downloadURL = "https://github.com/huzvanec/CustomCapes/releases/download/v2.1/capes.zip"  # define url to zip
     response = requests.get(downloadURL)  # download zip
     open(rootFolderPath + "capes.zip", "wb").write(response.content)  # save zip
     print(c.Blue + "Capes successfully downloaded!")
