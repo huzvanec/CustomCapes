@@ -1,6 +1,6 @@
+> [!CAUTION]
+> This repository is no longer maintained.
 # CustomCapes
-# NOT MAINTAINED!
-## This repository is not maintained!
 ## Table of contents
 [What is it?](#what-is-it)
 
